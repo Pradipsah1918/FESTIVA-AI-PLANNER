@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Festiva Planner AI</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <div>
+        <span class="eyebrow">AI + ML + RAG + Multi-Agent + SQLite</span>
+        <h1>Festiva Planner AI</h1>
+        <p>Plan weddings, corporate events, and birthdays with a smart planning assistant that creates timelines, optimizes budgets, retrieves event knowledge, and recommends city-specific vendors.</p>
+      </div>
+      <div class="hero-card glass">
+        <div class="metric"><strong>3</strong><span>Event types</span></div>
+        <div class="metric"><strong>4</strong><span>AI modules</span></div>
+        <div class="metric"><strong>SQLite</strong><span>Persistent plans</span></div>
+      </div>
+    </header>
+
+    <main class="dashboard-grid">
+      <section class="glass form-panel">
+        <h2>Create an event plan</h2>
+        <form id="planner-form">
+          <label>Event type
+            <select name="event_type">
+              <option value="wedding">Wedding</option>
+              <option value="corporate">Corporate</option>
+              <option value="birthday">Birthday</option>
+            </select>
+          </label>
+          <label>Budget (₹)
+            <input type="number" name="budget" value="1000000" min="50000" step="10000" />
+          </label>
+          <label>City
+            <input type="text" name="city" value="Bangalore" />
+          </label>
+          <label>Preferences
+            <textarea name="preferences" rows="4">luxury, outdoor, floral, candid photos</textarea>
+          </label>
+          <label>Ask the knowledge assistant
+            <input type="text" name="question" value="Best wedding timeline?" />
+          </label>
+          <button type="submit">Generate smart plan</button>
+        </form>
+      </section>
+
+      <section class="glass insight-panel">
+        <div class="section-head">
+          <h2>Quick capability overview</h2>
+          <span class="badge">6-week roadmap included</span>
+        </div>
+        <div class="feature-list">
+          <article>
+            <h3>Planner Agent</h3>
+            <p>Builds a structured event timeline, action checklist, and vendor categories.</p>
+          </article>
+          <article>
+            <h3>Budget Agent</h3>
+            <p>Uses a regression model to predict cost splits and guide trade-offs.</p>
+          </article>
+          <article>
+            <h3>Knowledge Agent</h3>
+            <p>Answers event planning queries using a lightweight RAG pipeline over event guides.</p>
+          </article>
+          <article>
+            <h3>Vendor Recommender</h3>
+            <p>Ranks city-specific vendors using budget fit, rating, category relevance, and preference tags.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="glass results-panel full-span">
+        <div class="section-head">
+          <h2>Generated plan</h2>
+          <button id="load-history" class="secondary" type="button">Load recent plans</button>
+        </div>
+        <div id="status" class="status">Ready to create your event plan.</div>
+        <div id="results" class="results-grid hidden">
+          <div class="result-card">
+            <h3>Plan summary</h3>
+            <p id="plan-summary"></p>
+            <div id="vendor-categories" class="chip-wrap"></div>
+          </div>
+          <div class="result-card">
+            <h3>Budget optimizer</h3>
+            <p id="budget-tip"></p>
+            <div class="budget-total" id="predicted-total"></div>
+            <div id="budget-breakdown"></div>
+          </div>
+          <div class="result-card full-width">
+            <h3>Timeline</h3>
+            <div id="timeline"></div>
+          </div>
+          <div class="result-card">
+            <h3>Checklist</h3>
+            <ul id="checklist"></ul>
+          </div>
+          <div class="result-card">
+            <h3>Vendor suggestions</h3>
+            <div id="vendors"></div>
+          </div>
+          <div class="result-card full-width">
+            <h3>Knowledge assistant</h3>
+            <p id="knowledge-answer"></p>
+            <ul id="knowledge-sources"></ul>
+          </div>
+          <div class="result-card full-width">
+            <h3>Recommended 6-week build plan</h3>
+            <div class="roadmap-grid">
+              <article><strong>Week 1</strong><span>Define event types, collect planning data, vendor categories, and run EDA.</span></article>
+              <article><strong>Week 2</strong><span>Train regression models for category-wise budget prediction.</span></article>
+              <article><strong>Week 3</strong><span>Process event descriptions and classify event intent.</span></article>
+              <article><strong>Week 4</strong><span>Build a knowledge base and retrieval pipeline for event Q&A.</span></article>
+              <article><strong>Week 5</strong><span>Orchestrate planner, research, and optimizer agents.</span></article>
+              <article><strong>Week 6</strong><span>Deploy FastAPI plus frontend with Docker and SQLite persistence.</span></article>
+            </div>
+          </div>
+        </div>
+        <div id="history" class="history-list"></div>
+      </section>
+    </main>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
